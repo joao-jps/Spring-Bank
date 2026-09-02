@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: springbank
+  datasource:
+    url: jdbc:mysql://localhost:3307/banco_db
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
