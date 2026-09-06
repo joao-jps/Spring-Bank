@@ -3,10 +3,7 @@ package io.github.joaojps.springbank.controller;
 import io.github.joaojps.springbank.dto.ContaRequestDTO;
 import io.github.joaojps.springbank.model.Conta;
 import io.github.joaojps.springbank.service.ContaService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController  // Recebe requisições HTTP e devolve dados (Geralmente JSON)
 @RequestMapping("/contas") // Rota comum para todos os métodos da classe
@@ -19,9 +16,18 @@ public class ContaController {
         this.contaService = contaService;
     }
 
+    // Endpoint para criar uma conta nova
     @PostMapping
     public Conta criarConta(@RequestBody ContaRequestDTO dto) {
         return contaService.criarConta(dto.getNomeTitular(), dto.getSaldo());
     }
+
+    // Endpoint para procurar id específico
+    @GetMapping("/{id}") // Captura o valor (id) q passamos e busca no sistema pelo id específico
+    public Conta buscarPorId(@PathVariable Long id){
+        return  contaService.buscarPorId(id);
+    }
+
+
 
 }

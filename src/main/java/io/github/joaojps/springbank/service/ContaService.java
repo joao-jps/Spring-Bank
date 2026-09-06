@@ -3,8 +3,11 @@ package io.github.joaojps.springbank.service;
 import io.github.joaojps.springbank.model.Conta;
 import io.github.joaojps.springbank.repository.ContaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 import java.util.Random;
 
 @Service // Essa classe faz as funcionalidades da aplicação
@@ -30,5 +33,11 @@ public class ContaService {
         Random random = new Random();
         int numeroConta = random.nextInt(100000, 1000000); // Gera numero identificador de conta de 6 dígitos
         return String.valueOf(numeroConta);
+    }
+
+    public Conta buscarPorId(Long id) {
+        Optional<Conta> conta = contaRepository.findById(id);
+        return conta.orElseThrow( () -> new RuntimeException("Conta não encontrada") );
+        // () -> expressão lambada para criar uma função simples sem nota q cria uma RuntimeException
     }
 }
