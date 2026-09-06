@@ -59,8 +59,8 @@ Uma requisição percorre sempre o mesmo caminho: `Controller → Service → Re
 
 ### Em andamento / próximos passos imediatos
 
-- `GET /contas/{id}` — buscar uma conta específica
-- `GET /contas` — listar todas as contas
+- Início do desenvolvimento de operações bancárias centrais
+- Aumento de qualidade e robustez
 
 ## Intenções futuras
 
