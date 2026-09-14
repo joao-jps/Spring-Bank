@@ -52,9 +52,17 @@ public class ContaService {
 
     @Transactional
     public Conta depositar(String numeroConta, BigDecimal valor) {
-        Conta conta = buscarPorNumeroConta(numeroConta);
-        conta.creditar(valor);
+        Conta conta = buscarPorNumeroConta(numeroConta); // procura pelo numero da conta específica
+        conta.creditar(valor); // credita o valor a essa conta
         contaRepository.save(conta);   // Salva a conta após os depósitos no banco de dados
+        return conta;
+    }
+
+    @Transactional
+    public Conta saque(String numeroConta, BigDecimal valor) {
+        Conta conta = buscarPorNumeroConta(numeroConta);
+        conta.debitar(valor);
+        contaRepository.save(conta);
         return conta;
     }
 

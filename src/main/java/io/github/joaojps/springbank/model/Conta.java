@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor // Cria um construtor vazio obrigatorio pedido pelo JPA
 public class Conta {
 
-    @Version
+    @Version  // Locking de versão otimista
     private Long version;
 
     @Id
@@ -55,6 +55,13 @@ public class Conta {
 //    Altera o estado interno da própria conta funcionando como uma substituição para um setSaldo
     public void creditar(BigDecimal valor) {
         this.saldo = this.saldo.add(valor);
+    }
+
+    public void debitar(BigDecimal valor) {
+        if (this.saldo.compareTo(valor) <= 0) {
+            throw new RuntimeException("Saldo insuficiente");
+        }
+        this.saldo = this.saldo.subtract(valor);
     }
 
 

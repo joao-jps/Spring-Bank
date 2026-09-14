@@ -2,6 +2,7 @@ package io.github.joaojps.springbank.controller;
 
 import io.github.joaojps.springbank.dto.ContaRequestDTO;
 import io.github.joaojps.springbank.dto.DepositoRequestDTO;
+import io.github.joaojps.springbank.dto.SaqueRequestDTO;
 import io.github.joaojps.springbank.model.Conta;
 import io.github.joaojps.springbank.service.ContaService;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,12 @@ public class ContaController {
     @PostMapping("/{numeroConta}/depositar")
     public Conta depositar(@PathVariable String numeroConta, @RequestBody DepositoRequestDTO dto) {
         return contaService.depositar(numeroConta, dto.getValor());
+    }
+
+    //Endpoint para o saque bancário
+    @PostMapping("/{numeroConta}/sacar")
+    public Conta saque(@PathVariable String numeroConta, @RequestBody SaqueRequestDTO dto) {
+        return contaService.saque(numeroConta, dto.getValor());
     }
 
 
