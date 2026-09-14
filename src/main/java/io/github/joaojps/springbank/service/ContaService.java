@@ -3,6 +3,8 @@ package io.github.joaojps.springbank.service;
 import io.github.joaojps.springbank.model.Conta;
 import io.github.joaojps.springbank.repository.ContaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -39,9 +41,22 @@ public class ContaService {
         // () -> expressão lambada para criar uma função simples sem nota q cria uma RuntimeException
     }
 
+    public Conta buscarPorNumeroConta(String numeroConta) {
+        Optional<Conta> conta = contaRepository.findByNumeroConta(numeroConta);
+        return conta.orElseThrow( () -> new RuntimeException("Conta não encontrada"));
+    }
+
     public List<Conta> listarContas() {
         return contaRepository.findAll();
     }
 
+    @Transactional
+    public Conta depositar(String numeroConta, BigDecimal valor) {
+        Conta conta = buscarPorNumeroConta(numeroConta);
+        conta.creditar(valor);
+        contaRepository.save(conta);   // Salva a conta após os depósitos no banco de dados
+        return conta;
+    }
 
+    
 }

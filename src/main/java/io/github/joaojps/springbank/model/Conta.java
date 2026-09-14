@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor // Cria um construtor vazio obrigatorio pedido pelo JPA
 public class Conta {
 
+    @Version
+    private Long version;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -47,6 +50,11 @@ public class Conta {
         this.saldo = saldo;
         this.dataCriacao = LocalDateTime.now();
         this.status = StatusConta.ATIVA;
+    }
+
+//    Altera o estado interno da própria conta funcionando como uma substituição para um setSaldo
+    public void creditar(BigDecimal valor) {
+        this.saldo = this.saldo.add(valor);
     }
 
 
