@@ -66,5 +66,9 @@ public class ContaService {
         return conta;
     }
 
+    public Conta salvar(Conta conta) {
+        return contaRepository.save(conta);
+    }
+
     
 }
