@@ -59,15 +59,15 @@ Uma requisição percorre sempre o mesmo caminho: `Controller → Service → Re
 
 ### Em andamento / próximos passos imediatos
 
-- Início do desenvolvimento de operações bancárias centrais
-- Aumento de qualidade e robustez
+- Aprofundamento das operaçõs bancárias e maio robustez de dados
+- Aumento de qualidade e robustez da aplicação
 
 ## Intenções futuras
 
 - **Operações bancárias centrais**
-  - Depósito
-  - Saque (com validação de saldo)
-  - Transferência entre contas
+  - Depósito - concluído
+  - Saque (com validação de saldo) - concluído
+  - Transferência entre contas - concluído
   - Histórico de transações (nova entidade `Transacao`)
 
 - **Qualidade e robustez**
